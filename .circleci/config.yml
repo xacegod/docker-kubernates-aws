@@ -25,7 +25,7 @@ workflows:
       - node/test
       - aws-elastic-beanstalk/deploy:
           context: aws-creds
-          environment-name: my-app
+          environment-name: Generalkenobidockerapp-env
           filters:
             branches:
               only:
