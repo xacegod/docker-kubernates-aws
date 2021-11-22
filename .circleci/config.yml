@@ -5,6 +5,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   node: circleci/node@4.7
+  aws-elastic-beanstalk: circleci/aws-elastic-beanstalk@2.0.1
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -19,3 +20,16 @@ workflows:
           version: '16.10'
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
+  elastic-beanstalk-workflow:
+    jobs:
+      - node/test
+      - aws-elastic-beanstalk/deploy:
+          context: aws-creds
+          environment-name: my-app
+          filters:
+            branches:
+              only:
+                - main
+          label: version-<<pipeline.number>>
+          requires:
+            - node/test

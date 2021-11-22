@@ -1,0 +1,9 @@
+branch-defaults:
+  master:
+    environment: $CIRCLE_BRANCH-GeneralKenobiDockerApp
+global:
+  application_name: GeneralKenobiDockerApp
+  default_ec2_keyname: t2.micro
+  default_platform: 64bit Amazon Linux 2017.09 v2.6.2 running Ruby 2.4 (Passenger Standalone)
+  default_region: us-east-1
+  sc: git
